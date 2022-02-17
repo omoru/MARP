@@ -64,6 +64,7 @@ bool resuelveCaso()
         return false;
 
     // Añadimos los cortes en 0 y en longitud -> numCortes+2 elementos
+    //Asi solo se consideran los cortes que no son los extremos
     cortes.push_back(0);
     for (int i = 0; i < numCortes; i++)
     {
