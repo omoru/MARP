@@ -53,10 +53,10 @@ EntInf minMonedas(int C, const vector<int> &valores,const vector<int> &cantidade
         {
             for(int k = 1; k <= cantidades[i-1] && k *valores[i-1] <= j;k++){
                 int vi = k*valores[i-1];
-                if(mat[j-vi]!= Infinito) 
+                if(mat[j-vi]!= Infinito) //No seria necesario comprobarlo por el min
                     mat[j]=min(mat[j],mat[j-vi] + k);
-                else
-                   mat[j]=mat[j] ;
+                //else
+                   //mat[j]=mat[j] ;
             }
         }
     }
