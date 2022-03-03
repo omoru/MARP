@@ -14,14 +14,22 @@ using namespace std;
 
 Programacion dinamica ascendente para poder reducir coste en espacio
 
-maxPuntuacion(i,j) : maxima puntuacion posible para llegar a la casilla i,j del tablero desde la fila 0
+maxPuntuacion(i,j) : maxima puntuacion posible para llegar a la fila 0 desde la casilla (i,j) del tablero
 
 N -> numero de filas/columnas
 
 Casos base:
-    maxPuntuacion(0,j) = tablero(0,j) 0<=j< N
-Caso recursivo:
-    maxPuntuacion(i,j) = max(maxPuntuacion(i-1,j),maxPuntuacion(i-1,j-1),maxPuntuacion(i-1,j+1)) +tablero[i][j]
+    maxPuntuacion(0,j) = tablero(0,j)     con  0 <= j < N
+    
+Casos recursivos:  con 1 <= i < N
+    maxPuntuacion(i,j) = max(maxPuntuacion(i-1,j),maxPuntuacion(i-1,j-1),maxPuntuacion(i-1,j+1)) + tablero[i][j]   con 0 < j < N - 1                                                                                                                                                                                                                     
+    maxPuntuacion(i,j) = max(maxPuntuacion(i-1,j),maxPuntuacion(i-1,j+1)) + tablero[i][j]   con  j == 0
+    maxPuntuacion(i,j) = max(maxPuntuacion(i-1,j),maxPuntuacion(i-1,j-1)) + tablero[i][j]   con  j == N - 1
+
+Llamada inicial :
+    max { maxPuntuacion(N-1,k) }  con 0 <= k < N
+                                                                                                                      
+    
 */
 
 struct Solucion
@@ -47,7 +55,7 @@ Solucion maxPuntuacion_optima(int N, const Matriz<int> &tablero)
         int mat_j, mat_j_mas_1 = 0;
         for (int j = N - 1; j >= 0; j--)
         {
-            //mat[j] antes de ser modificado, ya que sera el mat[j+1] en la proxima iteracion
+            //mat[j] antes de ser modificado, ya que se calcula la fila actual sobre la anterior y perderiamos la posicion j de la fila anterior
             mat_j = mat[j];
             if (j > 0 && j < N - 1)
                 mat[j] = max(max(mat[j], mat[j - 1]), mat_j_mas_1) + tablero[i][j];
