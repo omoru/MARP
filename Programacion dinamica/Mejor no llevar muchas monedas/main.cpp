@@ -23,8 +23,8 @@ minMonedas(i,j): numero minimo necesario de monedas para pagar la cantidad j
     Llamada inicial:
         minMonedas(N,C)
     Casos base:
-        minMonedas(0,j) = Infinito     si 1<=j<=C
-        minMonedas(i,0) = 0            si 0 <= i <=N
+        minMonedas(0,j) = Infinito     si 1 <= j <= C
+        minMonedas(i,0) = 0            si 0 <= i <= N
 
     Casos recursivos:
         1 <= i <= N
@@ -36,6 +36,9 @@ minMonedas(i,j): numero minimo necesario de monedas para pagar la cantidad j
     i y la i -1 para ir calculando la matriz,y se puede actualizar sobre una unica fila de derecha a
     izquierda ya que de la fila i - 1 solo necesitaremos las columnas que sean < = j
     y no queremos pisar esos valores
+    
+    Tiempo: O(N x C x max{ni}) siendo ni las cantidades de monedas de cada tipo
+    Espacio : O(C)
 */
 
 
@@ -50,7 +53,7 @@ EntInf minMonedas(int C, const vector<int> &valores,const vector<int> &cantidade
         {
             for(int k = 1; k <= cantidades[i-1] && k *valores[i-1] <= j;k++){
                 int vi = k*valores[i-1];
-                if(mat[j-vi]!= Infinito)
+                if(mat[j-vi]!= Infinito) 
                     mat[j]=min(mat[j],mat[j-vi] + k);
                 else
                    mat[j]=mat[j] ;
