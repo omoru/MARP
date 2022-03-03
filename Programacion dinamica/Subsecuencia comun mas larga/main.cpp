@@ -25,8 +25,9 @@ N2-> longitud(palabra2)
 Casos base:
     maxSubsecuencia(0,j) = 0 con 0 <= j <= N2
     maxSubsecuencia(i,0) = 0 con 0 <= i <= N1
-Caso recursivo:
-    maxSubsecuencia(i,j) = maxSubsecuencia(i-1,j-1) + 1   si palabra1[i]== palabra2[j]
+    
+Caso recursivo: con 0 < i <= N1  y  0 < j <= N2
+    maxSubsecuencia(i,j) = maxSubsecuencia(i-1,j-1) + 1   si palabra1[i-1] == palabra2[j-1] , ya que palabra va de 0 a N-1
                      eoc -> max(maxSubsecuencia(i-1,j),maxSubsecuencia(i,j-1))
 
 Llamada inicial:
